@@ -9,4 +9,4 @@ with open("index.html", "r", encoding="utf-8") as f:
     html_content = f.read()
 
 # HTMLを埋め込み（高さは必要に応じて調整）
-components.html(html_content, height=2800, scrolling=True)
+components.html(html_content, height=3200, scrolling=True)
