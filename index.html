@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>運用ミス分析レポート インフォグラフィック (2022-2025上半期)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #1A1A2E;
+            color: #E0E0E0;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh;
+            width: 100%;
+            max-width: 1100px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 50vh;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #88BBDD;
+        }
+        .section-card {
+            background-color: #2A2A4A;
+            color: #E0E0E0;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#88BBDD] mb-2">運用ミス分析レポート</h1>
+            <p class="text-lg text-[#CCCCCC]">2022年 - 2025年上半期：失敗から学ぶプロセスの進化</p>
+            <p class="text-md text-[#E0E0E0] mt-4 max-w-2xl mx-auto">本レポートは、過去の運用ミス傾向と対策変遷を詳細分析。 <br> データに基づき、効果的な予防・検知・阻止・学習フレームワークを提示し、 <br> 堅牢な運用体制構築を目指します。</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="kpi" class="section-card">
+                <h2 class="text-2xl font-bold text-[#88BBDD] mb-4 text-center">2025年上半期サマリー：主要指標が示す警鐘</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-4 bg-[#4A4A7A] rounded-lg">
+                        <p class="text-5xl font-bold text-[#FFFFFF]">16<span class="text-2xl ml-1">件</span></p>
+                        <p class="text-[#E0E0E0] mt-2">上半期ミス総件数</p>
+                    </div>
+                    <div class="p-4 bg-[#4A4A7A] rounded-lg">
+                        <p class="text-5xl font-bold text-[#FFFFFF]">+33<span class="text-2xl ml-1">%</span></p>
+                        <p class="text-[#E0E0E0] mt-2">前年同期比増加率</p>
+                    </div>
+                    <div class="p-4 bg-[#4A4A7A] rounded-lg">
+                        <p class="text-5xl font-bold text-[#FFFFFF]">69<span class="text-2xl ml-1">%</span></p>
+                        <p class="text-[#E0E0E0] mt-2">公開後発覚の割合</p>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-[#E0E0E0]">2025年上半期は、ミス件数が過去最多を記録。業務量増加と体制変更が重なり、 <br> 「負荷ピーク」「フロー分断」が顕著化。特にミスの約7割が公開後発覚しており、 <br> ブランド毀損・信頼性低下に直結。最終監査プロセスの緊急見直しが必須です。</p>
+            </section>
+
+            <section id="trend" class="section-card">
+                <h2 class="text-2xl font-bold text-[#88BBDD] mb-2">量的推移：ミス件数の増加傾向</h2>
+                <p class="text-[#E0E0E0] mb-4">ミス件数は2022年以降、一貫して増加しています。</p>
+                <ul class="list-disc list-inside text-[#E0E0E0] mb-6 text-sm">
+                    <li>増加トレンド： 2022年の8件から2025年上半期には16件へと倍増。</li>
+                    <li>潜在ミスの顕在化： 評価項目細分化と記録文化定着が寄与。</li>
+                    <li>運用体制の課題： 増加する業務量・複雑性への対応が不十分。</li>
+                </ul>
+                <div class="chart-container h-80">
+                    <canvas id="totalMistakesChart"></canvas>
+                </div>
+            </section>
+
+            <section id="category" class="section-card">
+                <h2 class="text-2xl font-bold text-[#88BBDD] mb-2">質的推移：単純ミスから複合ミスへ</h2>
+                <p class="text-[#E0E0E0] mb-4">ミスの性質は年々変化し、複雑化しています。</p>
+                <ul class="list-disc list-inside text-[#E0E0E0] mb-6 text-sm">
+                    <li>初期： 2022年は「テキスト関連」が60%超と突出。</li>
+                    <li>複合化： 「画像・動画」「予約・設定フロー」が年々増加。</li>
+                    <li>ツール導入の影響： CMSなどツール導入に伴う設定・連携ミスが増加。</li>
+                    <li>2025年上半期： テキスト関連再増加も、画像内テキストやハッシュタグ誤接続など複雑な背景。</li>
+                </ul>
+                <div class="chart-container h-96">
+                    <canvas id="stackedBarMistakesChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="yearly-breakdown" class="section-card">
+                 <h2 class="text-2xl font-bold text-[#88BBDD] mb-6 text-center">年度別ミス内訳：詳細分析</h2>
+                 <p class="text-[#E0E0E0] mb-8 text-center">各年度のミス構成比から、運用課題と焦点が浮き彫りに。 <br> 初期のテキスト中心から、ツール導入に伴う設定ミス、近年は複雑なフローでの連携不足や「思い込み」が顕著です。</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-semibold mb-2 text-[#E0E0E0]">2022年 (8件)</h3>
+                        <ul class="text-sm text-[#CCCCCC] mb-4 list-disc list-inside text-left w-full px-4">
+                            <li>特徴： 単純誤字・テンプレート誤用が多数。</li>
+                            <li>事例： Fujicco RT欠落、Adobe Expressタグミス。</li>
+                            <li>要因： 基本的な確認不足。</li>
+                        </ul>
+                        <div class="relative w-full h-64">
+                            <canvas id="donut2022"></canvas>
+                        </div>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-semibold mb-2 text-[#E0E0E0]">2023年 (10件)</h3>
+                        <ul class="text-sm text-[#CCCCCC] mb-4 list-disc list-inside text-left w-full px-4">
+                            <li>特徴： 絵文字・ハッシュタグの「細部」ミス増加。</li>
+                            <li>事例： Amazon DM失念、MSD画像見切れ。</li>
+                            <li>要因： DM・画像表示に関する新課題。</li>
+                        </ul>
+                        <div class="relative w-full h-64">
+                            <canvas id="donut2023"></canvas>
+                        </div>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-semibold mb-2 text-[#E0E0E0]">2024年 (12件)</h3>
+                        <ul class="text-sm text-[#CCCCCC] mb-4 list-disc list-inside text-left w-full px-4">
+                            <li>特徴： テキスト・画像・設定ミスが均等化。</li>
+                            <li>事例： Coca-Cola予約漏れ、YouTube Reel比率誤り。</li>
+                            <li>要因： 複雑フロー・プラットフォーム設定ミス。</li>
+                        </ul>
+                        <div class="relative w-full h-64">
+                            <canvas id="donut2024"></canvas>
+                        </div>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-semibold mb-2 text-[#E0E0E0]">2025年上半期 (16件)</h3>
+                        <ul class="text-sm text-[#CCCCCC] mb-4 list-disc list-inside text-left w-full px-4">
+                            <li>特徴： ミス件数急増。</li>
+                            <li>事例： YouTube Japan曲名誤字、矢崎総業国名位置誤り。</li>
+                            <li>要因： 多重チェック後の「思い込み」ミス。</li>
+                        </ul>
+                        <div class="relative w-full h-64">
+                            <canvas id="donut2025"></canvas>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="discovery" class="section-card">
+                <h2 class="text-2xl font-bold text-[#88BBDD] mb-2">発見タイミング：公開後発覚率の課題</h2>
+                <p class="text-[#E0E0E0] mb-4">ミスの発見タイミングは影響度を示す重要指標です。</p>
+                <ul class="list-disc list-inside text-[#E0E0E0] mb-6 text-sm">
+                    <li>深刻な状況： 2025年上半期には約7割（69%）が公開後に発覚。</li>
+                    <li>影響： ブランド毀損、信頼性低下、多大なリカバリーコスト。</li>
+                    <li>背景： 「思い込み」や深夜・休日対応時のチェック機能不全。</li>
+                    <li>課題： リリース前の最終監査プロセス抜本的強化が必須。</li>
+                </ul>
+                <div class="chart-container h-80">
+                    <canvas id="discoveryRateChart"></canvas>
+                </div>
+            </section>
+
+            <section id="countermeasures" class="section-card">
+                <h2 class="text-2xl font-bold text-[#88BBDD] mb-2">対策の進化：人為からシステム防御へ</h2>
+                <p class="text-[#E0E0E0] mb-4">ミスの増加と質的変化に伴い、対策も進化。人為的努力からツール活用、強制力を持つフロー構築へと組織的防御力が向上しています。</p>
+                <ul class="list-disc list-inside text-[#E0E0E0] mb-6 text-sm">
+                    <li>対策総数増加： 2022年の18項目から2025年上半期には55項目へ。</li>
+                    <li>多角的なアプローチ： 複雑なミス類型に対応するための積極的投資。</li>
+                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center mb-4 text-[#E0E0E0]">改善案の件数推移</h3>
+                        <p class="text-sm text-[#CCCCCC] mb-4 text-center">ミス件数と並行して改善案も増加。特に2024年以降、可視化・自動化対策が飛躍的に増えました。</p>
+                        <div class="chart-container h-72">
+                            <canvas id="improvementsChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center mb-4 text-[#E0E0E0]">対策の質的変化フェーズ</h3>
+                        <p class="text-sm text-[#CCCCCC] mb-4 text-center">対策は「ヒト中心」から「AIなどツールによる強制力」へと軸足を移しています。</p>
+                        <div class="space-y-3">
+                            <div class="p-4 bg-[#4A4A7A] rounded-lg">
+                                <p class="font-bold text-[#88BBDD]">フェーズ1：ヒトで守る (2022年)</p>
+                                <ul class="text-sm text-[#E0E0E0] list-disc list-inside mt-1">
+                                    <li>誤字・設定ミスが主因。</li>
+                                    <li>Wチェック表、音読確認など人的対策。</li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-[#4A4A7A] rounded-lg">
+                                <p class="font-bold text-[#88BBDD]">フェーズ2：道具を"補助"に使う (2023年)</p>
+                                <ul class="text-sm text-[#E0E0E0] list-disc list-inside mt-1">
+                                    <li>cMS導入で設定ミス浮上。</li>
+                                    <li>Gカレンダー照合、DMテンプレ化。</li>
+                                    <li>ツール操作教育を開始。</li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-[#4A4A7A] rounded-lg ring-2 ring-[#88BBDD]">
+                                <p class="font-bold text-[#88BBDD]">フェーズ3：道具で"強制"フロー化 (2024年)</p>
+                                <ul class="text-sm text-[#E0E0E0] list-disc list-inside mt-1">
+                                    <li>ミス多様化、対策量2倍。</li>
+                                    <li>ダッシュボード、Chrome拡張で確認外在化。</li>
+                                    <li>チェックリストが「やらなければ進めない」UIへ。</li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-[#4A4A7A] rounded-lg">
+                                <p class="font-bold text-[#88BBDD]">フェーズ4：データを蓄え予兆検知 (2025年上半期)</p>
+                                <ul class="text-sm text-[#E0E0E0] list-disc list-inside mt-1">
+                                    <li>CMS承認フロー社内完結強制運用。</li>
+                                    <li>チェックリスト細分化で機械的誘導。</li>
+                                    <li>通知二重化で「思い込み」抑制。</li>
+                                    <li>今後はデータ蓄積とAIによる予兆検知へ。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="framework" class="section-card">
+                <h2 class="text-2xl font-bold text-[#88BBDD] mb-6 text-center">今後の対策設計：4段階防衛フレームワーク</h2>
+                <p class="text-[#E0E0E0] mb-8 text-center">過去の教訓から導かれた、将来の運用ミスを防ぐ包括的アプローチ。ミスの発生から影響拡大、再発防止までを網羅します。</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 border-2 border-dashed border-[#4A4A7A] rounded-lg flex-1">
+                        <p class="text-2xl mb-2">①</p>
+                        <h3 class="text-xl font-bold text-[#88BBDD]">予防 (Prevent)</h3>
+                        <p class="text-sm text-[#E0E0E0] mt-1">発生を未然に防ぐ。</p>
+                        <ul class="text-xs text-[#CCCCCC] list-disc list-inside mt-2 text-left">
+                            <li>テンプレート初期値に「NG設定」埋め込み。</li>
+                            <li>「一次情報リンク必須入力」フィールド追加。</li>
+                        </ul>
+                    </div>
+                    <div class="flow-arrow hidden md:block">→</div>
+                    <div class="flow-arrow md:hidden">↓</div>
+                    <div class="text-center p-4 border-2 border-dashed border-[#4A4A7A] rounded-lg flex-1">
+                        <p class="text-2xl mb-2">②</p>
+                        <h3 class="text-xl font-bold text-[#88BBDD]">検知 (Detect)</h3>
+                        <p class="text-sm text-[#E0E0E0] mt-1">迅速に発見する。</p>
+                        <ul class="text-xs text-[#CCCCCC] list-disc list-inside mt-2 text-left">
+                            <li>自動バリデーション（Chrome拡張、正規表現）を並行実行。</li>
+                            <li>差分比較AIで不整合を自動洗い出し。</li>
+                        </ul>
+                    </div>
+                     <div class="flow-arrow hidden md:block">→</div>
+                    <div class="flow-arrow md:hidden">↓</div>
+                    <div class="text-center p-4 border-2 border-dashed border-[#4A4A7A] rounded-lg flex-1">
+                        <p class="text-2xl mb-2">③</p>
+                        <h3 class="text-xl font-bold text-[#88BBDD]">阻止 (Block)</h3>
+                        <p class="text-sm text-[#E0E0E0] mt-1">進行を強制的に防ぐ。</p>
+                        <ul class="text-xs text-[#CCCCCC] list-disc list-inside mt-2 text-left">
+                            <li>承認ステップNGならボタン無効化UI (cMS承認モード)。</li>
+                            <li>不備コンテンツ公開を最終ゲートで確実に阻止。</li>
+                        </ul>
+                    </div>
+                     <div class="flow-arrow hidden md:block">→</div>
+                    <div class="flow-arrow md:hidden">↓</div>
+                    <div class="text-center p-4 border-2 border-dashed border-[#4A4A7A] rounded-lg flex-1">
+                        <p class="text-2xl mb-2">④</p>
+                        <h3 class="text-xl font-bold text-[#88BBDD]">学習 (Learn)</h3>
+                        <p class="text-sm text-[#E0E0E0] mt-1">再発防止と知識蓄積。</p>
+                        <ul class="text-xs text-[#CCCCCC] list-disc list-inside mt-2 text-left">
+                            <li>改善案をDB化し、類似ミス時に検索・参照可能に。</li>
+                            <li>ミス発生後の振り返りを組織全体の学びとする。</li>
+                        </ul>
+                    </div>
+                </div>
+                 <p class="text-center mt-8 text-[#E0E0E0]">このフレームワークは、ミスの発生予防、影響最小化、そして運用能力の継続的向上を目指します。 <br> 各ステップの「設計ポイント」を考慮し、実効性を高めます。</p>
+                 <div class="mt-8">
+                    <h3 class="text-xl font-bold text-[#88BBDD] mb-4 text-center">対策設計の具体的なポイント</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-[#4A4A7A] p-4 rounded-lg shadow">
+                            <p class="font-bold text-[#88BBDD] mb-1">可視性</p>
+                            <p class="text-sm text-[#E0E0E0]">具体策： 投稿管理シート編集ログ全員閲覧、未入力セル強調。<br>ねらい： 誰が何を見ていないか瞬時把握、責任・進捗明確化。</p>
+                        </div>
+                        <div class="bg-[#4A4A7A] p-4 rounded-lg shadow">
+                            <p class="font-bold text-[#88BBDD] mb-1">強制力</p>
+                            <p class="text-sm text-[#E0E0E0]">具体策： チェックリスト未完了なら Teamsに“未承認”ステータスを自動通知。<br>ねらい： 「やり忘れ」依存排除、システム的行動強制。</p>
+                        </div>
+                        <div class="bg-[#4A4A7A] p-4 rounded-lg shadow">
+                            <p class="font-bold text-[#88BBDD] mb-1">二重化</p>
+                            <p class="text-sm text-[#E0E0E0]">具体策： Gカレンダー+メール通知、Wチェッカーヘルプ制。<br>ねらい： SPOF排除、多角的チェック体制構築。</p>
+                        </div>
+                        <div class="bg-[#4A4A7A] p-4 rounded-lg shadow">
+                            <p class="font-bold text-[#88BBDD] mb-1">ファクト検証</p>
+                            <p class="text-sm text-[#E0E0E0]">具体策： 情報元URL必須、差分比較AIシステム導入。<br>ねらい： 「思い込み」排除、ファクト精度向上。</p>
+                        </div>
+                        <div class="bg-[#4A4A7A] p-4 rounded-lg shadow md:col-span-2">
+                            <p class="font-bold text-[#88BBDD] mb-1">評価指標</p>
+                            <p class="text-sm text-[#E0E0E0]">具体策： MTTR・再発率をKPI設定。<br>ねらい： 対策の「効き目」監視、迅速な改善サイクル。</p>
+                        </div>
+                    </div>
+                    <p class="text-center mt-6 text-[#E0E0E0] font-semibold">TIP： 対策は「①頻度 × ②影響度 × ③防ぎやすさ」で優先度付け、費用対効果を考慮し、工数が高い順に導入すると、効率的な改善が可能です。</p>
+                 </div>
+            </section>
+
+            <section id="conclusion" class="bg-[#4A4A7A] text-white p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-6 text-[#FFFFFF]">結論と今後の展望：ミスを「防ぐ」から「予見する」フェーズへ</h2>
+                <p class="text-center mb-8 text-[#E0E0E0]">運用ミス分析を通じて、組織課題と対策進化が明確化。 <br> ミス件数増加も対策質は向上し、「人」から「システム」へ軸足が移っています。 <br> 真に強固な運用体制には次のステップが必要です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-[#2A2A4A] p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-2 text-[#88BBDD]">予兆検知の強化</h3>
+                        <p class="text-[#E0E0E0] text-sm">ミスデータを分析し、「重大度×頻度マトリクス」で高リスク領域を特定。プロアクティブな対策で予兆を早期に捉える能力構築。</p>
+                    </div>
+                    <div class="bg-[#2A2A4A] p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-2 text-[#88BBDD]">効果測定と継続的改善</h3>
+                        <p class="text-[#E0E0E0] text-sm">対策の「効き目」を定量評価。MTTR・再発率をKPIとし、定期モニタリング。効果が薄い対策は速やかに見直し改善サイクルを回す。</p>
+                    </div>
+                    <div class="bg-[#2A2A4A] p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-2 text-[#88BBDD]">全社的なナレッジ共有基盤の構築</h3>
+                        <p class="text-[#E0E0E0] text-sm">個別改善に留まらず、ナレッジを組織資産として蓄積し、即時再利用できる環境整備。改善案DBと検索ダッシュボード構築でPDCAを高速化。</p>
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-[#E0E0E0]">ミスは避けられませんが、それを学びの機会とし、プロセスを強化し続けることが組織成長に繋がります。 <br> 今後は、「防ぐ」だけでなく「予見する」フェーズへ移行し、データに基づいたインテリジェントな運用体制を築き、より強固なミス耐性を目指します。</p>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 py-4 text-[#CCCCCC]">
+            <p>&copy; 2025 CS局. All Rights Reserved.</p>
+            <p class="text-sm">データソース: 「CMT:業務改善MTG議事録」 2022-2025</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FONT_COLOR = '#E0E0E0';
+            const GRID_COLOR = '#4A4A7A';
+            const PALETTE = {
+                darkBackground: '#1A1A2E',
+                sectionBackground: '#2A2A4A',
+                cardAccent: '#4A4A7A',
+                primaryAccent: '#88BBDD', // Soft Sky Blue (main blue for charts)
+                brightAccent1: '#00C9A7', // Vibrant Teal
+                brightAccent2: '#FF9F43', // Lively Orange
+                whiteText: '#FFFFFF',
+                lightGrayText: '#CCCCCC'
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const wrapLabel = (label, maxWidth) => {
+                if (label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: FONT_COLOR,
+                            font: {
+                                family: "'Noto Sans JP', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: FONT_COLOR,
+                             font: {
+                                family: "'Noto Sans JP', sans-serif"
+                            }
+                        },
+                        grid: {
+                            color: GRID_COLOR
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: FONT_COLOR,
+                             font: {
+                                family: "'Noto Sans JP', sans-serif"
+                            }
+                        },
+                        grid: {
+                            color: GRID_COLOR
+                        }
+                    }
+                }
+            };
+
+            const primaryChartColor = PALETTE.primaryAccent; // Main blue for most charts
+            const secondaryChartColor = PALETTE.brightAccent1; // Teal for secondary lines/bars
+            const tertiaryChartColor = PALETTE.brightAccent2; // Orange for another distinction
+
+
+            // 1. Total Mistakes Chart
+            const totalMistakesCtx = document.getElementById('totalMistakesChart')?.getContext('2d');
+            if (totalMistakesCtx) {
+                new Chart(totalMistakesCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2022', '2023', '2024', '2025 上半期'],
+                        datasets: [{
+                            label: 'ミス総件数',
+                            data: [8, 10, 12, 16],
+                            borderColor: primaryChartColor,
+                            backgroundColor: primaryChartColor + '33', // 20% opacity
+                            fill: true,
+                            tension: 0.1,
+                            pointRadius: 5,
+                            pointBackgroundColor: primaryChartColor
+                        }]
+                    },
+                    options: defaultChartOptions
+                });
+            }
+
+            // 2. Stacked Bar Chart for Mistake Categories
+            const stackedBarCtx = document.getElementById('stackedBarMistakesChart')?.getContext('2d');
+            if (stackedBarCtx) {
+                new Chart(stackedBarCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2022', '2023', '2024', '2025 上半期'],
+                        datasets: [
+                            {
+                                label: 'テキスト関連',
+                                data: [5, 6, 4, 7],
+                                backgroundColor: primaryChartColor,
+                            },
+                            {
+                                label: '画像/動画関連',
+                                data: [2, 2, 4, 5],
+                                backgroundColor: secondaryChartColor,
+                            },
+                            {
+                                label: ['予約・設定/', '投稿フロー'],
+                                data: [0, 1, 3, 3],
+                                backgroundColor: tertiaryChartColor,
+                            },
+                            {
+                                label: ['DM・コミュニ', 'ケーション関連'],
+                                data: [1, 1, 0, 0],
+                                backgroundColor: PALETTE.cardAccent,
+                            },
+                             {
+                                label: 'ファクト関連',
+                                data: [0, 0, 1, 1],
+                                backgroundColor: '#BB86FC', // Distinct purple from original palette, works well
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            x: { stacked: true, ...defaultChartOptions.scales.x },
+                            y: { stacked: true, ...defaultChartOptions.scales.y, beginAtZero: true }
+                        }
+                    }
+                });
+            }
+
+            // 3. Yearly Donut Charts
+            const donutOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: FONT_COLOR,
+                            font: { family: "'Noto Sans JP', sans-serif" },
+                            boxWidth: 20
+                        }
+                    },
+                     tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            const commonLabels = ['テキスト関連', '画像/動画関連', '予約/設定/フロー', 'DM/コミュニケーション', 'ファクト'];
+            const commonBgColors = [primaryChartColor, secondaryChartColor, tertiaryChartColor, PALETTE.cardAccent, '#BB86FC'];
+            
+            const donutData = {
+                '2022': [5, 2, 0, 1, 0],
+                '2023': [6, 2, 1, 1, 0],
+                '2024': [4, 4, 3, 0, 1],
+                '2025': [7, 5, 3, 0, 1]
+            };
+            
+            Object.keys(donutData).forEach(year => {
+                const donutCtx = document.getElementById(`donut${year}`)?.getContext('2d');
+                if (donutCtx) {
+                    new Chart(donutCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: commonLabels.map(l => wrapLabel(l, 15)),
+                            datasets: [{
+                                label: `ミス内訳 ${year}`,
+                                data: donutData[year],
+                                backgroundColor: commonBgColors,
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: donutOptions
+                    });
+                }
+            });
+
+
+            // 4. Discovery Rate Chart
+            const discoveryRateCtx = document.getElementById('discoveryRateChart')?.getContext('2d');
+            if (discoveryRateCtx) {
+                new Chart(discoveryRateCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2022', '2023', '2024', '2025 上半期'],
+                        datasets: [{
+                            label: '公開後に発覚した割合 (%)',
+                            data: [75, 60, 50, 69],
+                            backgroundColor: primaryChartColor,
+                            borderColor: primaryChartColor,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                           ...defaultChartOptions.scales,
+                            y: {
+                                ...defaultChartOptions.scales.y,
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%'
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...defaultChartOptions.plugins,
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.parsed.y + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 5. Improvements Chart
+            const improvementsCtx = document.getElementById('improvementsChart')?.getContext('2d');
+            if (improvementsCtx) {
+                new Chart(improvementsCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2022', '2023', '2024', '2025 上半期'],
+                        datasets: [{
+                            label: '改善案の件数',
+                            data: [18, 22, 46, 55],
+                            borderColor: secondaryChartColor, /* Teal accent */
+                            backgroundColor: secondaryChartColor + '33', /* Teal accent with opacity */
+                            fill: true,
+                            tension: 0.1,
+                            pointRadius: 5,
+                            pointBackgroundColor: secondaryChartColor
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                           ...defaultChartOptions.scales,
+                           y: { ...defaultChartOptions.scales.y, beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
